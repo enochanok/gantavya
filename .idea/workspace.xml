@@ -4,7 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4745ae3f-4d6a-46e0-856c-890a768b5965" name="Changes" comment="" />
+    <list default="true" id="4745ae3f-4d6a-46e0-856c-890a768b5965" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/vite.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dashbaord-front-end/website-front-end/vite.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/.eslintrc.cjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/src/App.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/src/assets/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/src/main.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website-front-end/vite.config.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,21 +62,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/Hanok/Downloads/gantavya",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Hanok/Downloads/gantavya&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GantavyaCarRentalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="20" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="GantavyaApplication" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Spring Boot.GantavyaCarRentalApplication" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,6 +120,9 @@
       <workItem from="1712041047629" duration="701000" />
       <workItem from="1712042382732" duration="44000" />
       <workItem from="1712044157654" duration="2373000" />
+      <workItem from="1712048074702" duration="788000" />
+      <workItem from="1712132622108" duration="44000" />
+      <workItem from="1712133368980" duration="743000" />
     </task>
     <servers />
   </component>
