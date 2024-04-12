@@ -1,0 +1,43 @@
+.car-details-container {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sidebar {
+  flex: 0 0 200px; 
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
+
+.car-image {
+  width: 100%; 
+  border-radius: 5px;
+}
+
+.details {
+  margin-top: 10px;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+.find-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.find-btn:hover {
+  background-color: #0056b3;
+}
