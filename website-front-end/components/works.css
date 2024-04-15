@@ -1,0 +1,46 @@
+.how-it-works-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.step:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  width: 20px;
+  height: 2px;
+  background-color: #ccc;
+}
+
+.step:first-child:before {
+  display: none;
+}
+
+.step:last-child:before {
+  height: 50%;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.step p {
+  font-size: 16px;
+}
