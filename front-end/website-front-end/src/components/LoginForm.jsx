@@ -79,9 +79,10 @@ const LoginForm = ({ onClose }) => {
           <Signup onClose={onClose} />
         ) : (
           <form className="login-form" onSubmit={handleSubmit}>
-            <h2>
-              Login <RxCross2 />
-            </h2>
+            <div className="login">
+              <h2>Login</h2>
+              <h3 onClick={onClose}>X</h3>
+            </div>
             <div className="form-group">
               <label htmlFor="username">Username:</label>
               <input

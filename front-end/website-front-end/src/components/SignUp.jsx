@@ -116,7 +116,10 @@ const SignUp = ({ onClose }) => {
     <div className="sign-up-overlay" onClick={handleOverlayClick}>
       <div className="sign-up-container">
         <form className="sign-up-form" onSubmit={handleSubmit}>
-          <h2>Sign Up</h2>
+          <div className="signup">
+            <h2>signup</h2>
+            <h3 onClick={onClose}>X</h3>
+          </div>
           <div className="sign-up-form-group">
             <label htmlFor="full-name">Full Name:</label>
             <input

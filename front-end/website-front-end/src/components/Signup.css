@@ -68,3 +68,9 @@
   text-decoration: underline;
   font-size: inherit;
 }
+
+.signup {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
