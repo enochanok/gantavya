@@ -3,8 +3,8 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="container">
+    <footer className="footer_main">
+      <div className="Footer_container">
         <div className="footer-content">
           <div className="footer-section about">
             <h2>About Us</h2>
@@ -17,15 +17,9 @@ const Footer = () => {
           <div className="footer-section contact">
             <h2>Contact Us</h2>
             <div className="contact-info">
-              <p>
-                <i className="fas fa-phone"></i> 123-456-7890
-              </p>
-              <p>
-                <i className="fas fa-envelope"></i> info@gantabya.com
-              </p>
-              <p>
-                <i className="fas fa-map-marker-alt"></i> Kathmandu,Nepal
-              </p>
+              <p>123-456-7890</p>
+              <p>info@gantabya.com</p>
+              <p>Kathmandu,Nepal</p>
             </div>
           </div>
           <div className="footer-section links">

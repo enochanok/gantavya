@@ -1,0 +1,8 @@
+.vehicle-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-container {
+  width: 50%;
+}
