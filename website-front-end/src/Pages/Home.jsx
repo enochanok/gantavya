@@ -6,7 +6,10 @@ import Signup from "../components/SignUp";
 import Works from "../components/Works";
 import Header from "../components/Header";
 
+//function home
+
 function Home() {
+
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showSignupForm, setShowSignupForm] = useState(false);
   const handleSignInClick = () => {
