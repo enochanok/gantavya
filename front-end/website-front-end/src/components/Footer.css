@@ -1,9 +1,17 @@
 /* Footer.css */
 
+:root{
+  --primary-color: #F1F6F9;
+  --secondary-color: #212A3E;
+  --dark-blue-color:#212A3E;
+  --primary-blue: #0057ff;
+  --light-grey-color: #9BA4B5; 
+}
+
 .footer_main {
   background-color: #333;
   color: #fff;
-  padding: 50px 0;
+  padding: 50px 0 0 0;
 }
 
 .Footer_container {
@@ -13,13 +21,16 @@
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 15em;
 }
+
 
 .footer-section {
   flex: 1;
-  margin-right: 20px;
+  margin-right: 1em;
 }
+
 
 .footer-section h2 {
   font-size: 1.5rem;
@@ -60,4 +71,33 @@
 
 .footer-bottom p {
   font-size: 0.8rem;
+}
+
+footer .upper-footer .container .footer-logo .link-icon {
+  color: var(--primary-white);
+}
+
+
+.horizontal__line{
+  /* width: 90%; */
+  /* text-align: center; */
+  margin: 2em auto 0.2em;
+  border: 0.5px solid white !important;
+
+}
+
+footer .lower-footer--content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+footer .lower-footer--content h5 {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  padding: 1em 0;
+  font-weight: 400;
+}
+footer .lower-footer--content {
+  color: var(--primary-color) !important;
 }
