@@ -7,10 +7,13 @@ function Vehicles() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // fetch("http://localhost:8080/gantavyaAdmin/vehicle/fetchAllVehicle")
     fetch("http://localhost:3000/template")
       .then((response) => response.json())
       .then((data) => {
-        setCars(data);
+        const searchedDataList = data.searchedDataList;
+        setCars(searchedDataList);
+        console.log(searchedDataList);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -19,18 +22,18 @@ function Vehicles() {
 
   const handleClick = (car) => {
     const carDetails = {
-      name: car.name,
-      seats: car.seats,
+      name: car.modelName,
+      seats: car.seat,
       luggage: car.luggage,
-      doors: car.doors,
-      fueltype: car.fueltype,
-      airConditioning: car.airConditioning,
-      price: car.price,
-      image:car.image
+      doors: car.door,
+      fueltype: car.fuelType,
+      vehicleType: car.vehicleType,
+      price: car.dayPrice,
+      image: car.Image,
     };
 
     console.log(carDetails);
-    navigate(`/Vehicles/${car.name}`, { state: { carDetails } });
+    navigate(`/Vehicles/${car.modelName}`, { state: { carDetails } });
   };
 
   return (
@@ -40,25 +43,25 @@ function Vehicles() {
         {cars.map((car, index) => (
           <div className="Select_main" key={index}>
             <div className="image_container">
-              <img src={car.image} alt={car.name} />
+              <img src={car.Image} alt={car.name} />
             </div>
             <div className="Select_Vehicle">
-              <h2>{car.name}</h2>
+              <h2>{car.modelName}</h2>
               <div className="vehicle_info">
                 <div>
-                  <p>Seats: {car.seats}</p>
+                  <p>Seats: {car.seat}</p>
                   <p>Luggage: {car.luggage}</p>
-                  <p>Doors: {car.doors}</p>
+                  <p>Doors: {car.door}</p>
                 </div>
                 <div>
-                  <p>Conditioner: {car.airConditioning ? "Yes" : "No"}</p>
-                  <p>Fuel Type: {car.fueltype}</p>
+                  <p>Category: {car.vehicleType}</p>
+                  <p>Fuel Type: {car.fuelType}</p>
                 </div>
               </div>
             </div>
             <div className="Select_details">
               <h1>Estimated price</h1>
-              <h2>{car.price}</h2>
+              <h2>Rs. {car.dayPrice}</h2>
               <button onClick={() => handleClick(car)}>Book now</button>
             </div>
           </div>

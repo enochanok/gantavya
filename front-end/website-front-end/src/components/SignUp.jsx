@@ -1,42 +1,63 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Signup.css";
 
 const SignUp = ({ onClose }) => {
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [full_name, setfull_name] = useState("");
+  const [phone_number, setphone_number] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [fullNameError, setFullNameError] = useState("");
-  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [full_nameError, setfull_nameError] = useState("");
+  const [phone_numberError, setphone_numberError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSignIn = () => {
+    axios
+      .post("http://localhost:8080/gantavyaAdmin/user/createUser", {
+        full_name: full_name,
+        email: email,
+        phone_number: phone_number,
+        password: password,
+      })
+      .then((response) => {
+        console.log(
+          "Response data in JSON format:",
+          JSON.stringify(response.data)
+        );
+      })
+      .catch((error) => {
+        console.error("Sign In error:", error);
+        // Handle errors if any
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let isValid = true;
 
-    if (fullName.trim() === "") {
-      setFullNameError("Full Name is required");
+    if (full_name.trim() === "") {
+      setfull_nameError("Full Name is required");
       isValid = false;
     } else {
-      setFullNameError("");
+      setfull_nameError("");
     }
 
-    if (phoneNumber.trim() === "") {
-      setPhoneNumberError("Phone Number is required");
+    if (phone_number.trim() === "") {
+      setphone_numberError("Phone Number is required");
       isValid = false;
-    } else if (isNaN(phoneNumber)) {
-      setPhoneNumberError("Phone Number can only be numbers");
+    } else if (isNaN(phone_number)) {
+      setphone_numberError("Phone Number can only be numbers");
       isValid = false;
-    } else if (phoneNumber.trim().length != 10) {
-      setPhoneNumberError("Phone Number should be 10 digits");
+    } else if (phone_number.trim().length != 10) {
+      setphone_numberError("Phone Number should be 10 digits");
       isValid = false;
     } else {
-      setPhoneNumberError("");
+      setphone_numberError("");
     }
 
     if (email.trim() === "") {
@@ -76,13 +97,13 @@ const SignUp = ({ onClose }) => {
 
     if (isValid) {
       console.log("Form submitted successfully!");
-      console.log("Full Name:", fullName);
-      console.log("Phone Number:", phoneNumber);
+      console.log("Full Name:", full_name);
+      console.log("Phone Number:", phone_number);
       console.log("Email:", email);
       console.log("Password:", password);
       console.log("Confirm Password:", confirmPassword);
-      setFullName("");
-      setPhoneNumber("");
+      setfull_name("");
+      setphone_number("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -117,7 +138,7 @@ const SignUp = ({ onClose }) => {
       <div className="sign-up-container">
         <form className="sign-up-form" onSubmit={handleSubmit}>
           <div className="signup">
-            <h2>signup</h2>
+            <h2>Sign Up</h2>
             <h3 onClick={onClose}>X</h3>
           </div>
           <div className="sign-up-form-group">
@@ -125,20 +146,20 @@ const SignUp = ({ onClose }) => {
             <input
               type="text"
               id="full-name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              value={full_name}
+              onChange={(e) => setfull_name(e.target.value)}
             />
-            <span className="error-message">{fullNameError}</span>
+            <span className="error-message">{full_nameError}</span>
           </div>
           <div className="sign-up-form-group">
             <label htmlFor="phone-number">Phone Number:</label>
             <input
               type="text"
               id="phone-number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={phone_number}
+              onChange={(e) => setphone_number(e.target.value)}
             />
-            <span className="error-message">{phoneNumberError}</span>
+            <span className="error-message">{phone_numberError}</span>
           </div>
           <div className="sign-up-form-group">
             <label htmlFor="email">Email:</label>
@@ -180,13 +201,13 @@ const SignUp = ({ onClose }) => {
             />
             Show
           </div>
-          <button type="submit" className="btn">
+          <button type="submit" className="btn" onClick={handleSignIn}>
             Register
           </button>
           <p className="have-account">
             Already have an account?{" "}
             <button className="btn" onClick={onClose}>
-              Sign In
+              Login
             </button>
           </p>
         </form>

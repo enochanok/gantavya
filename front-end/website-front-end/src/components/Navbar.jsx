@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import logo from "../assets/logo.png";
+import Primarylogo from "../assets/primary-icon.svg";
 import menu from "../assets/menu.png";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ onSignInClick }) => {
   const [sticky, setSticky] = useState(false);
@@ -20,11 +21,24 @@ const Navbar = ({ onSignInClick }) => {
   return (
     <>
       <nav className={`container ${sticky ? "dark-nav" : ""}`}>
-        <img src={logo} alt="logo" />
+        <figure className="icon">
+          <Link to="/">
+            <img src={Primarylogo} alt="logo" className="icon-logo" />
+          </Link>
+        </figure>
+
         <ul className={mobileMenu ? " " : "mobile-menu"}>
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact us</li>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/contact">Contact</NavLink>
+          </li>
+
           <li>
             <button className="btn" onClick={onSignInClick}>
               Sign in

@@ -36,7 +36,7 @@
 .sign-up-form-group input[type="password"] {
   width: 100%;
   padding: 10px;
-  margin: 0;
+  margin: 0.2em;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -57,7 +57,7 @@
 
 .have-account {
   text-align: center;
-  margin-top: 20px;
+  margin-top: .3em;
 }
 
 .have-account button {
@@ -73,4 +73,9 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  margin-bottom: 1em;
+}
+
+.show-password{
+  margin: 1em 0;
 }
