@@ -1,9 +1,13 @@
 package com.carRentalService.gantavya.request.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import com.carRentalService.gantavya.utils.PasswordEncrypt;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserCreateRequest {
     private String full_name;
     private String email;
