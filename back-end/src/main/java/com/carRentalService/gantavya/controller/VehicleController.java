@@ -6,6 +6,7 @@ import com.carRentalService.gantavya.request.vehicle.VehicleModifyRequest;
 import com.carRentalService.gantavya.response.SearchResponse;
 import com.carRentalService.gantavya.response.ServerResponse;
 import com.carRentalService.gantavya.service.VehicleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +38,9 @@ public class VehicleController {
 
     @PostMapping(PathConstant.MODIFY_VEHICLE)
     public ResponseEntity<ServerResponse> modifyVehicle(
-            @RequestBody VehicleModifyRequest vehicleModifyRequest){
+            @RequestBody @Valid VehicleModifyRequest vehicleModifyRequest){
         return vehicleService.modifyVehicle(vehicleModifyRequest);
     }
+
+
 }
