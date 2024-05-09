@@ -4,6 +4,7 @@ import com.carRentalService.gantavya.database.dao.VehicleDAO;
 import com.carRentalService.gantavya.database.entity.Vehicles;
 import com.carRentalService.gantavya.database.repo.VehicleRepo;
 import com.carRentalService.gantavya.dto.VehicleDto;
+import com.carRentalService.gantavya.exception.ProcessNotAllowedException;
 import com.carRentalService.gantavya.request.vehicle.VehicleCreateRequest;
 import com.carRentalService.gantavya.request.vehicle.VehicleModifyRequest;
 import com.carRentalService.gantavya.response.SearchResponse;
@@ -59,6 +60,31 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public ResponseEntity<ServerResponse> modifyVehicle(VehicleModifyRequest vehicleModifyRequest) {
-        return null;
+        Optional<Vehicles> vehicleDetail = vehicleRepo.findById(vehicleModifyRequest.getId());
+        if (vehicleDetail.isEmpty()) {
+            throw new ProcessNotAllowedException("Unable to modify the district. District does not exist.");
+        }
+
+        vehicleDetail = Optional.of(modifyVehicleSetterProcess(vehicleDetail.get(),vehicleModifyRequest));
+        try{
+            System.out.println(vehicleDetail);
+            vehicleRepo.save(vehicleDetail.get());
+            return ServerResponse.successResponse("Vehicle has been modified successfully");
+        }catch (Exception e) {
+//            log.error("error", e);
+            return ServerResponse.failureResponse("Unable to modify vehicle.");
+        }
+    }
+
+    private Vehicles modifyVehicleSetterProcess(Vehicles vehicleDetails, VehicleModifyRequest vehicleModifyRequest) {
+        vehicleDetails.setModel_Name(vehicleModifyRequest.getModel_name());
+        vehicleDetails.setVehicle_type(vehicleModifyRequest.getVehicle_type());
+        vehicleDetails.setSeat(vehicleModifyRequest.getSeat());
+        vehicleDetails.setDoor(vehicleModifyRequest.getDoor());
+        vehicleDetails.setLuggage(vehicleModifyRequest.getLuggage());
+        vehicleDetails.setFuel_type(vehicleModifyRequest.getFuel_type());
+        vehicleDetails.setDay_price(vehicleModifyRequest.getDay_price());
+        return vehicleDetails;
+
     }
 }
