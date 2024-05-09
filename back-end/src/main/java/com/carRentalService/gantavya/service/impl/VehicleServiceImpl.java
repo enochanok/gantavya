@@ -17,7 +17,7 @@ import java.util.*;
 
 @Service
 //@Log4j2
-public class VehicleServiceImpl implements VehicleService {
+public class  VehicleServiceImpl implements VehicleService {
 
     @Autowired
     VehicleRepo vehicleRepo;

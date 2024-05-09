@@ -6,7 +6,9 @@ public class PathConstant {
     //user
     public final static String USER = "user";
     public final static String CREATE_USER = "createUser";
+    public final static String MODIFY_USER = "modifyUser";
     public final static String FETCH_ALL_USER = "fetchAllUser";
+    public final static String FETCH_USER_BY_ID = "id";
 
     // Vehicle
     public final static String VEHICLE = "vehicle";
