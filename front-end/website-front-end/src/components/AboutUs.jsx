@@ -1,6 +1,13 @@
+import React from "react";
+import "./AboutUs.css";
+import Cont from "../assets/about-image2.jpg";
+
 function AboutUs() {
   return (
     <div>
+      <div className="picture-container">
+        <img className="about-image" src={Cont} alt="Contact" />
+      </div>
       <div
         style={{
           display: "flex",
@@ -19,7 +26,7 @@ function AboutUs() {
             color: "rgb(3, 27, 78)",
           }}
         >
-          Hiring a vehicle? You are at the right place/
+          Hiring a vehicle ? You are at the right place.
         </h2>
         <h5
           style={{
@@ -63,7 +70,7 @@ function AboutUs() {
                       letterSpacing: "-0.2px",
                     }}
                   >
-                    20+ Years of Providing Luxury Car Services in Nepal
+                    15+ Years of Providing Luxury Car Services in Nepal
                   </h4>
                   <p
                     style={{
@@ -101,7 +108,7 @@ function AboutUs() {
                       letterSpacing: "-0.2px",
                     }}
                   >
-                    Services Available in 50+ Major Cities of Nepal
+                    Services Available in 7+ Major Cities of Nepal
                   </h4>
                   <p
                     style={{
@@ -115,7 +122,7 @@ function AboutUs() {
                       lineHeight: "1.6em",
                     }}
                   >
-                    Spark Car is at your service for your extraordinary
+                    Gantavya is at your service for your extraordinary
                     adventures in major cities across Nepal. Wherever your
                     journey leads, we're here for you.
                   </p>
@@ -124,10 +131,14 @@ function AboutUs() {
             </div>
             <div style={{ flex: "1", marginRight: "10px" }}>
               <img
-                src="https://sparkapi.sparkcar.org/Uploads/Banner/A53nSRGuOOumyP2rBVs2BJ4TZqHFRlgM.png"
+                src="../src/assets/about-car.png"
                 alt="home_banner"
                 class="img-fluid wow fadeInUp animated animated animated animated animated animated"
-                style={{ visibility: "visible" }}
+                style={{
+                  visibility: "visible",
+                  height: "200px",
+                  width: "450px",
+                }}
               />
             </div>
             <div style={{ flex: "1", marginRight: "10px" }}>
@@ -224,8 +235,8 @@ function AboutUs() {
           style={{
             display: "flex",
             marginTop: "-1rem",
-            marginRight: "-0.75rem",
-            marginLeft: "-0.75rem",
+            // marginRight: "-0.75rem",
+            // marginLeft: "-0.75rem",
           }}
         >
           <div
@@ -242,8 +253,8 @@ function AboutUs() {
               height="400"
               decoding="async"
               data-nimg="1"
-              src="https://sparkcar.org/_next/image?url=https%3A%2F%2Fsparkapi.sparkcar.org%2FUploads%2Fbanner%2FBmH6XreMLigaVqf8Vqt9hVhNKIHDqM2t.jpeg&w=640&q=75"
-              style={{ width: "100%", display: "block" }}
+              src="https://images.unsplash.com/photo-1512484186986-88ff4e9313cc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D"
+              style={{ width: "100%" }}
             />
           </div>
           <div

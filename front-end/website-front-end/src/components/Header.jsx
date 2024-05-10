@@ -8,8 +8,8 @@ function Header() {
       <div className="header container">
         <div className="text">
           <h1>
-            Looking for a <span style={{ color: "yellowgreen" }}>Car</span>?
-            Rent a Car in just a Few Easy Steps
+            Looking for a <span style={{ color: "#212A3E" }}>Car</span>? Rent a
+            Car in just a Few Easy Steps
           </h1>
         </div>
         {/*hello*/}
