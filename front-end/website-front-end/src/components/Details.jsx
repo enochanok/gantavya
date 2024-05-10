@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./Details.css";
 
 const Input = () => {
@@ -12,14 +13,25 @@ const Input = () => {
 
   const handleFindButtonClick = () => {
     if (!pickLocation || !dropLocation || !pickDate || !dropDate) {
-      alert("Please fill out all required fields.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill all the fields!",
+        width: "20em",
+      });
       return;
     }
 
     if (pickDate > dropDate) {
-      alert("Drop date cannot be in past");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Drop date cannot be before pick-up date!",
+        width: "20em",
+      });
       return;
     }
+
     const sendData = { pickLocation, dropLocation, pickDate, dropDate };
     navigate("/Vehicles", { state: sendData });
   };
@@ -62,7 +74,10 @@ const Input = () => {
             id="pickupDate"
             value={pickDate}
             min={new Date().toISOString().split("T")[0]}
-            onChange={(e) => setPickDate(e.target.value)}
+            onChange={(e) => {
+              setPickDate(e.target.value);
+              setDropDate(""); // Reset dropDate when pickDate changes
+            }}
           />
         </div>
         <div className="col-md-6">
@@ -73,7 +88,7 @@ const Input = () => {
             className="form-control"
             id="dropDate"
             value={dropDate}
-            min={new Date().toISOString().split("T")[0]} // disables all the passed dates and allows the user to pick date from today
+            min={pickDate}
             onChange={(e) => setDropDate(e.target.value)}
           />
         </div>
