@@ -1,9 +1,13 @@
 package com.carRentalService.gantavya.database.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "vehicle")
 @Data
 public class Vehicles {
@@ -18,6 +22,9 @@ public class Vehicles {
 
     @Column(name = "vehicle_type")
     private String vehicle_type;
+
+    @Column(name = "number_plate")
+    private String number_plate;
 
     @Column(name = "seat")
     private String seat;

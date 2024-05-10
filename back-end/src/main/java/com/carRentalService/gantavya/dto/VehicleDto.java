@@ -8,6 +8,7 @@ public class VehicleDto {
     private Integer id;
     private String modelName;
     private String vehicleType;
+    private String numberPlate;
     private String seat;
     private String door;
     private String luggage;

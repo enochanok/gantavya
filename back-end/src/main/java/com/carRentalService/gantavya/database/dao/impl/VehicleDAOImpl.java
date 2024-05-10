@@ -28,6 +28,7 @@ public class VehicleDAOImpl implements VehicleDAO {
                     + " v.id as id,"
                     + " v.model_name as modelName,"
                     + " v.vehicle_type as vehicleType,"
+                    + " v.number_plate as numberPlate,"
                     + " v.seat as seat,"
                     + " v.door as door,"
                     + " v.luggage as luggage,"
@@ -36,7 +37,7 @@ public class VehicleDAOImpl implements VehicleDAO {
                     + " FROM vehicle v";
             logger.info("Generated SQL Query: {}", queryString);
             queryString = getSearchCriteriaQuery(allRequestParams, queryString);
-            queryString += " ORDER BY v.day_price DESC";
+            queryString += " ORDER BY v.id";
             Query sqlQuery =  this.em.createNativeQuery(queryString);
             setQueryParameters(sqlQuery, allRequestParams);
             NativeQuery nativeQuery = sqlQuery.unwrap(NativeQuery.class);
@@ -47,7 +48,6 @@ public class VehicleDAOImpl implements VehicleDAO {
             logger.error("Error retrieving vehicles: {}", e.getMessage(), e);
             return new ArrayList<>();
         }
-
     }
 
 
