@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Signup.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const SignUp = ({ onClose }) => {
   const [full_name, setfull_name] = useState("");
@@ -28,17 +30,17 @@ const SignUp = ({ onClose }) => {
           "Response data in JSON format:",
           JSON.stringify(response.data)
         );
+        toast.success("Sign up successful!");
       })
       .catch((error) => {
         console.error("Sign In error:", error);
-        // Handle errors if any
+        toast.error("cannot sign up!");
       });
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     let isValid = true;
+    e.preventDefault();
 
     if (full_name.trim() === "") {
       setfull_nameError("Full Name is required");
@@ -53,7 +55,7 @@ const SignUp = ({ onClose }) => {
     } else if (isNaN(phone_number)) {
       setphone_numberError("Phone Number can only be numbers");
       isValid = false;
-    } else if (phone_number.trim().length != 10) {
+    } else if (phone_number.trim().length !== 10) {
       setphone_numberError("Phone Number should be 10 digits");
       isValid = false;
     } else {
@@ -107,6 +109,7 @@ const SignUp = ({ onClose }) => {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
+      handleSignIn();
       onClose();
     } else {
       console.log("Form has validation errors.");
@@ -201,7 +204,7 @@ const SignUp = ({ onClose }) => {
             />
             Show
           </div>
-          <button type="submit" className="btn" onClick={handleSignIn}>
+          <button type="submit" className="btn" onClick={handleSubmit}>
             Register
           </button>
           <p className="have-account">
