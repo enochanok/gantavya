@@ -111,11 +111,9 @@ public class UserServiceImpl implements UserService {
             String hashedInputPassword = PasswordEncrypt.encodePassword(loginRequest.getPassword());
 
             // Check if hashed password matches the one stored in the database
-            if (!hashedInputPassword.equals(user.getPassword())) {
-                throw new Exception("Incorrect password");
+            if (hashedInputPassword != null && !hashedInputPassword.git equals(user.getPassword())) {
+                return ServerResponse.failureResponse("Incorrect password");
             }
-
-            // Return success response if authentication is successful
             return ServerResponse.successResponse("Login successful");
         } catch (Exception e) {
             return ServerResponse.failureResponse(e.getMessage());
