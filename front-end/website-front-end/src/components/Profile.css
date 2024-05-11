@@ -1,0 +1,305 @@
+body {
+  margin: 0;
+}
+
+.picture-container {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.contact-image {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.profile-leftbar {
+  margin-top: 50px;
+  background-color: #f8f9fa;
+  /* Light gray background */
+  border-radius: 8px;
+  /* Rounded corners */
+  padding: 20px;
+  /* Padding around content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Shadow for depth */
+  height: 170px;
+  margin-right: 140px;
+  margin-left: 80px;
+}
+
+.profile-leftbar h4 {
+  font-size: 20px;
+  line-height: 1.3em;
+  margin: 0;
+}
+
+.profile-leftbar p {
+  margin: 8px 0;
+  /* Adjust spacing between paragraphs */
+  font-size: 14px;
+  /* Medium font size */
+  color: #666;
+  /* Medium dark text color */
+}
+
+.spacer-menu {
+  margin-top: 10px;
+}
+
+.profile-username {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #acacac;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.menu-col {
+  padding: 5px 10px;
+  display: block;
+  color: #333333;
+  line-height: 1.5rem;
+}
+
+
+.profile-leftbar p:last-child {
+  margin-bottom: 0;
+  /* Remove bottom margin from last paragraph */
+}
+
+/* Style the links */
+.profile-leftbar a {
+  text-decoration: none;
+  /* Remove underline */
+  color: #007bff;
+  /* Blue link color */
+}
+
+.profile-leftbar a:hover {
+  text-decoration: underline;
+  /* Underline on hover */
+  color: #0056b3;
+  /* Darker blue on hover */
+}
+
+
+.main-subcontain-div {
+  display: flex;
+  /* Make it a flex container */
+
+  justify-content: space-between;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.contain-div {
+  flex: 1;
+  /* Make each container take equal space */
+  padding: 10px;
+  /* Add padding inside each container */
+
+  margin-right: 10px;
+  /* Add space between containers */
+}
+
+.query-profile {
+  margin-right: 10%;
+  width: 700px;
+  margin-top: 35px;
+  margin-bottom: 80px;
+}
+
+.contain-div:last-child {
+  margin-right: 0;
+  /* Remove margin from the last container */
+}
+
+/* Style specific elements inside contain-div */
+.car-pic {
+  width: 20px;
+}
+
+.car-module,
+.car-title,
+.start-date,
+.end-date,
+.amount,
+.payment-status,
+.from,
+.to {
+  margin-bottom: 8px;
+  /* Add space below each element */
+}
+
+.img {
+  width: 150px;
+  height: 90px;
+  justify-content: center;
+}
+
+.maincontainer-profile {
+  display: flex;
+}
+
+.sub-contain {
+  display: flex;
+  position: relative;
+
+}
+
+.query-form {
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.pt-2 {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 26px;
+  padding-top: .5rem;
+  margin-right: .5rem;
+  margin-left: .5rem;
+}
+
+.car-title {
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+
+}
+
+.btn-section {
+  z-index: 1;
+  overflow: hidden;
+  padding: .375rem 1rem .3125rem;
+  font-size: .75rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  border: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2), 0 2px 10px 0 rgba(0, 0, 0, .1);
+  display: flex;
+  width: 160px;
+}
+
+.btn-section button {
+  color: #fff;
+  width: 50px;
+  margin-right: 30px;
+
+}
+
+.cancel-btn button {
+  background-color: red;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.pay-btn button {
+  background-color: #3f6cc7;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.text-primary {
+  cursor: pointer;
+  color: #007bff;
+  font-size: 14px
+}
+
+.car-module {
+  font-size: 14px;
+  word-spacing: 5px;
+
+}
+
+.text-secondary {
+  color: #b23cfd;
+
+}
+
+.contain-div2 {
+  font-size: 14px;
+  width: 180px;
+  line-height: 30px;
+
+}
+
+.class-secondary {
+  margin-left: 8px;
+}
+
+.contain-div3 {
+  font-size: 14px;
+  width: 180px;
+  line-height: 30px;
+
+
+}
+
+.text-secondary-2 {
+  color: #f93154;
+  margin-left: 8px;
+}
+
+.query-form {
+  font-size: 17px;
+  line-height: 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction:row ;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.query-form h4 {
+  font-size: 20px;
+ 
+
+}
+.edit-query{
+  display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.input-container h5{
+  padding-right: 80px;
+  width: 60%;
+  height: 44px;
+}
+ input[type="password"]{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 38px;
+}
+.btn-reset{
+  background-color: #007bff;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0 2px 4px red(0, 0, 0, 0.1);
+  width: 30%;
+  height: 60%;
+  border: none;
+
+
+}
