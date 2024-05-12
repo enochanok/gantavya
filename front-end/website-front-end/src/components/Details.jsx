@@ -76,7 +76,7 @@ const Input = () => {
             min={new Date().toISOString().split("T")[0]}
             onChange={(e) => {
               setPickDate(e.target.value);
-              setDropDate(""); // Reset dropDate when pickDate changes
+              setDropDate("");
             }}
           />
         </div>
