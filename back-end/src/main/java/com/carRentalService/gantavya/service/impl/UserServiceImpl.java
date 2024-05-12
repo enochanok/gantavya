@@ -3,6 +3,7 @@ package com.carRentalService.gantavya.service.impl;
 import com.carRentalService.gantavya.database.entity.Users;
 import com.carRentalService.gantavya.database.repo.UserRepo;
 import com.carRentalService.gantavya.exception.ValidationException;
+import com.carRentalService.gantavya.request.user.LoginRequest;
 import com.carRentalService.gantavya.request.user.UserCreateRequest;
 import com.carRentalService.gantavya.request.user.UserUpdateRequest;
 import com.carRentalService.gantavya.response.ServerResponse;
@@ -20,7 +21,6 @@ public class UserServiceImpl implements UserService {
     // injecting userRepo dependency
     @Autowired
     UserRepo userRepo;
-
     // Method to create new user
     @Override
     public ResponseEntity<ServerResponse> createUser(UserCreateRequest userCreateRequest) {
@@ -88,6 +88,35 @@ public class UserServiceImpl implements UserService {
             return ServerResponse.successResponse(userList.toString());
         } catch (Exception e) {
             return ServerResponse.failureResponse(e + "Error while fetching all users");
+        }
+    }
+
+    @Override
+    public ResponseEntity<ServerResponse> loginUser(LoginRequest loginRequest) {
+        try {
+            // Validate login request
+            if (!Validation.isEmailValid(loginRequest.getEmail()) ||
+                    !Validation.isPasswordValid(loginRequest.getPassword())) {
+                throw new ValidationException("Invalid email or password");
+            }
+
+            // Find user by email
+            Optional<Users> userOptional = userRepo.findByEmail(loginRequest.getEmail());
+            if (userOptional.isEmpty()) {
+                throw new Exception("User not found");
+            }
+            Users user = userOptional.get();
+
+            // Hash the provided password for comparison
+            String hashedInputPassword = PasswordEncrypt.encodePassword(loginRequest.getPassword());
+
+            // Check if hashed password matches the one stored in the database
+            if (hashedInputPassword != null && !hashedInputPassword.git equals(user.getPassword())) {
+                return ServerResponse.failureResponse("Incorrect password");
+            }
+            return ServerResponse.successResponse("Login successful");
+        } catch (Exception e) {
+            return ServerResponse.failureResponse(e.getMessage());
         }
     }
 
