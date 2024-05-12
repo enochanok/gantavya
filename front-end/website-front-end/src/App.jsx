@@ -23,7 +23,6 @@ function App() {
           <Route path="/Vehicles/:car" element={<VehicleDetailPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/" element={<Contact />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

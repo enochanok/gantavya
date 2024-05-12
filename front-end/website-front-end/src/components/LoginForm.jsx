@@ -2,20 +2,45 @@ import React, { useState } from "react";
 import "./LoginForm.css";
 import Signup from "./SignUp.jsx";
 import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ onClose }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+
+  function handelLogin() {
+    axios
+      .post("http://localhost:8080/gantavyaAdmin/user/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(
+          "Response data in JSON format:",
+          JSON.stringify(response.data)
+        );
+        toast.success("Sign in successful!");
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+      })
+      .catch((error) => {
+        console.error("Sign In error:", error);
+        toast.error("Invalid email or password!");
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Username:", username);
+      console.log("Useremail:", email);
       console.log("Password:", password);
-      setUsername("");
+      setEmail("");
       setPassword("");
       onClose();
     }
@@ -44,9 +69,7 @@ const LoginForm = ({ onClose }) => {
       setPasswordError("Password must be 8 characters or more");
       isValid = false;
     } else if (!validatePassword(password)) {
-      setPasswordError(
-        "Password must contain at least one uppercase letter, one lowercase letter, and one digit"
-      );
+      setPasswordError("Password enter a valid password");
       isValid = false;
     } else {
       setPasswordError("");
@@ -84,12 +107,12 @@ const LoginForm = ({ onClose }) => {
               <h3 onClick={onClose}>X</h3>
             </div>
             <div className="form-group">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="email">Username:</label>
               <input
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               {usernameError && (
                 <span className="error" style={{ color: "red" }}>
@@ -127,7 +150,9 @@ const LoginForm = ({ onClose }) => {
                 </span>
               )}
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" onClick={handelLogin}>
+              Login
+            </button>
             <div className="login-options">
               <a href="#" onClick={handleForgotPassword}>
                 Forgot Password?
