@@ -15,7 +15,7 @@ public class VehicleModifyRequest {
     @Size(min = 2 , max = 15, message = "{vehicle.length}")
     @Pattern(regexp = ValidationConstant.ALPHA_REGEX_ONLY_ONE_WORD_WITHOUT_SPACE, message = "{vehicle.pattern}")
     private String model_name;
-
+    private String number_plate;
     private String vehicle_type;
     private String seat;
     private String door;

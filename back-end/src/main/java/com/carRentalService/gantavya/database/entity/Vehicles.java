@@ -19,6 +19,10 @@ public class Vehicles {
     @Column(name = "vehicle_type")
     private String vehicle_type;
 
+    @Column(name = "number_plate")
+    private String number_plate;
+
+
     @Column(name = "seat")
     private String seat;
 
