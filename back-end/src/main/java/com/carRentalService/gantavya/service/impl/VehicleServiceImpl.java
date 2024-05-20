@@ -79,6 +79,7 @@ public class  VehicleServiceImpl implements VehicleService {
     private Vehicles modifyVehicleSetterProcess(Vehicles vehicleDetails, VehicleModifyRequest vehicleModifyRequest) {
         vehicleDetails.setModel_Name(vehicleModifyRequest.getModel_name());
         vehicleDetails.setVehicle_type(vehicleModifyRequest.getVehicle_type());
+        vehicleDetails.setNumber_plate(vehicleDetails.getNumber_plate());
         vehicleDetails.setSeat(vehicleModifyRequest.getSeat());
         vehicleDetails.setDoor(vehicleModifyRequest.getDoor());
         vehicleDetails.setLuggage(vehicleModifyRequest.getLuggage());
