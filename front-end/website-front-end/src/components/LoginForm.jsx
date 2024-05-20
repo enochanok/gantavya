@@ -25,7 +25,7 @@ const LoginForm = ({ onClose }) => {
           "Response data in JSON format:",
           JSON.stringify(response.data)
         );
-        toast.success("Sign in successful!");
+        toast.success("Login successful!");
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
       })
