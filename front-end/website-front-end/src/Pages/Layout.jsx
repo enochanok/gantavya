@@ -20,7 +20,6 @@ const Layout = ({ children }) => {
       {showLoginForm && <LoginForm onClose={handleSignInClick} />}
       {showSignupForm && <Signup onClose={handleSignUpClick} />}
       <main>{children}</main>
-      <Footer />
     </>
   );
 };

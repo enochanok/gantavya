@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Footer.css";
 import SecondaryIcon from "../assets/secondary-icon.svg";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+  const [path, setPath] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path]);
+
+  const handleLinkClick = (pathName) => {
+    setPath(pathName);
+  };
+
   return (
     <footer className="footer_main">
       <div className="Footer_container">
@@ -32,24 +43,33 @@ const Footer = () => {
             <h2>Quick Links</h2>
             <ul>
               <li>
-                <a href="#">Home</a>
+                <NavLink to="/" onClick={() => handleLinkClick("Home")}>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <a href="#">About</a>
+                <NavLink to="/about" onClick={() => handleLinkClick("about")}>
+                  About us
+                </NavLink>
               </li>
               <li>
                 <a href="#">Cars</a>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <NavLink
+                  to="/contact"
+                  onClick={() => handleLinkClick("contact")}
+                >
+                  Contact
+                </NavLink>
               </li>
             </ul>
           </div>
         </div>
         <hr className="horizontal__line" />
-        <div class="lower-footer">
-          <div class="container">
-            <div class="lower-footer--content">
+        <div className="lower-footer">
+          <div className="container">
+            <div className="lower-footer--content">
               <h5>© Copyright 2023 Gantavya. rights reserved.</h5>
               <h5>Designed and Developed by Keyser</h5>
             </div>
