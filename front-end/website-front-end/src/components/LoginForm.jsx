@@ -28,6 +28,7 @@ const LoginForm = ({ onClose }) => {
         toast.success("Login successful!");
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
+        localStorage.setItem("status", "true");
       })
       .catch((error) => {
         console.error("Sign In error:", error);

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-
-import "./ProductData";
+import React, { useState } from "react";
 import axios from "axios";
 
 function UserData({ user }) {
   const [editId, setEditID] = useState(-1);
-  const [fullName, setfullName] = useState(user.fullName || "");
-  const [email, setemail] = useState(user.email || "");
-  const [phone, setphone] = useState(user.phone || "");
+  const [fullName, setFullName] = useState(user.full_name || "");
+  const [email, setEmail] = useState(user.email || "");
+  const [phone, setPhone] = useState(user.phone_number || "");
 
   function handleEdit(id) {
     setEditID(id);
@@ -15,7 +13,7 @@ function UserData({ user }) {
 
   function handleUpdate() {
     const data = {
-      id: id,
+      id: user.id,
       full_name: fullName,
       email: email,
       phone_number: phone,
@@ -34,15 +32,13 @@ function UserData({ user }) {
       )
       .then((response) => {
         console.log("PUT request successful:", response);
-
         setEditID(-1);
+        location.reload();
       })
       .catch((error) => {
         console.log(jsonData);
         console.error("Error making PUT request:", error);
       });
-    setEditID(-1);
-    location.reload();
   }
 
   return (
@@ -54,7 +50,7 @@ function UserData({ user }) {
             <input
               type="text"
               value={fullName}
-              onChange={(e) => setfullName(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
@@ -62,7 +58,7 @@ function UserData({ user }) {
             <input
               type="text"
               value={email}
-              onChange={(e) => setemail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
@@ -71,7 +67,7 @@ function UserData({ user }) {
             <input
               type="text"
               value={phone}
-              onChange={(e) => setphone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
