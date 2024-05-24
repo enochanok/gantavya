@@ -21,6 +21,7 @@ const Navbar = ({ onSignInClick }) => {
 
     const email = localStorage.getItem("email");
     const password = localStorage.getItem("password");
+
     if (email && password) {
       setLoggedIn(true);
     }

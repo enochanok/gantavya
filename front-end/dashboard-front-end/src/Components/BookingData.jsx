@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-
-import "./ProductData";
+import React, { useState } from "react";
 import axios from "axios";
 
 function BookingData({ booking }) {
   const [editId, setEditID] = useState(-1);
   const [userId, setUserId] = useState(booking.userId || "");
-  const [vehicleId, setvehicleId] = useState(booking.vehicleId || "");
-  const [startDate, setstartDate] = useState(booking.startDate || "");
-  const [endDate, setendDate] = useState(booking.endDate || "");
+  const [vehicleId, setVehicleId] = useState(booking.vehicleId || "");
+  const [startDate, setStartDate] = useState(booking.startDate || "");
+  const [endDate, setEndDate] = useState(booking.endDate || "");
   const [bookingStatus, setBookingStatus] = useState(
     booking.bookingStatus || ""
   );
@@ -22,7 +20,7 @@ function BookingData({ booking }) {
 
   function handleUpdate() {
     const data = {
-      userId: id,
+      userId: userId,
       vehicleId: vehicleId,
       startDate: startDate,
       endDate: endDate,
@@ -45,25 +43,24 @@ function BookingData({ booking }) {
         console.log("PUT request successful:", response);
 
         setEditID(-1);
+        location.reload();
       })
       .catch((error) => {
         console.log(jsonData);
         console.error("Error making PUT request:", error);
       });
-    setEditID(-1);
-    location.reload();
   }
 
   return (
     <>
-      {booking.userId === editId ? (
+      {booking.id === editId ? (
         <tr>
           <td>{booking.id}</td>
           <td>
             <input
               type="text"
               value={vehicleId}
-              onChange={(e) => setvehicleId(e.target.value)}
+              onChange={(e) => setVehicleId(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
@@ -71,7 +68,7 @@ function BookingData({ booking }) {
             <input
               type="text"
               value={startDate}
-              onChange={(e) => setstartDate(e.target.value)}
+              onChange={(e) => setStartDate(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
@@ -80,14 +77,14 @@ function BookingData({ booking }) {
             <input
               type="text"
               value={endDate}
-              onChange={(e) => setendDate(e.target.value)}
+              onChange={(e) => setEndDate(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
             />
           </td>
 
           <td>
             <input
-              type="date"
+              type="text"
               value={bookingStatus}
               onChange={(e) => setBookingStatus(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}
@@ -96,7 +93,7 @@ function BookingData({ booking }) {
 
           <td>
             <input
-              type="date"
+              type="text"
               value={paymentStatus}
               onChange={(e) => setPaymentStatus(e.target.value)}
               style={{ width: "100%", margin: 0, padding: 0 }}

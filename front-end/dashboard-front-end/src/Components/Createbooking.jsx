@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./CreateVehicle.css";
 import Axios from "./Axios";
 
-const ApiKey = "http://localhost:8080/gantavyaAdmin/vehicle/createVehicle";
+const ApiKey = "http://localhost:8080/gantavyaAdmin/booking/creatingBooking";
 const Createbooking = ({ onCancel }) => {
   const [data, setData] = useState({
+    userId: "",
     vehicleId: "",
     startDate: "",
     endDate: "",
@@ -38,6 +39,17 @@ const Createbooking = ({ onCancel }) => {
               onChange={handleChange}
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="userId">user id:</label>
+            <input
+              type="number"
+              id="userId"
+              name="userId"
+              value={data.userId}
+              onChange={handleChange}
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="startDate">start date:</label>
             <input
@@ -48,6 +60,8 @@ const Createbooking = ({ onCancel }) => {
               onChange={handleChange}
             />
           </div>
+        </div>
+        <div className="middle-row">
           <div className="form-group">
             <label htmlFor="endDate">End date:</label>
             <input
@@ -58,12 +72,10 @@ const Createbooking = ({ onCancel }) => {
               onChange={handleChange}
             />
           </div>
-        </div>
-        <div className="middle-row">
           <div className="form-group">
             <label htmlFor="bookingStatus">booking status:</label>
             <input
-              type="number"
+              type="text"
               id="bookingStatus"
               name="bookingStatus"
               value={data.bookingStatus}
@@ -73,7 +85,7 @@ const Createbooking = ({ onCancel }) => {
           <div className="form-group">
             <label htmlFor="paymentStatus">payment status:</label>
             <input
-              type="number"
+              type="text"
               id="paymentStatus"
               name="paymentStatus"
               value={data.paymentStatus}

@@ -1,20 +1,32 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import UserPage from "./Pages/UserPage";
-import UserData from "./Pages/VehicleData";
-import BookingPage from "./Pages/BookingPage";
+import { BrowserRouter } from "react-router-dom";
+import AppController from "./Pages/AppController";
+import Login from "./Components/Login";
+import { useState, useEffect } from "react";
+
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const data = localStorage.getItem("admin");
+
+    if (data) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    console.log("Logged in successfully!");
+  };
+
+  console.log("isLoggedIn:", isLoggedIn);
+
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} exact />
-          <Route path="/users" element={<UserPage />} exact />
-          <Route path="/booking" element={<BookingPage />} exact />
-          <Route path="/vehicle" element={<UserData />} exact />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      {" "}
+      {/* Wrap your components with BrowserRouter */}
+      {isLoggedIn ? <AppController /> : <Login onLogin={handleLogin} />}
+    </BrowserRouter>
   );
 }
 
