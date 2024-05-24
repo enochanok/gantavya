@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios
-import { toast } from "react-toastify"; // Assuming you have toast notifications
-
+import axios from "axios";
+import { toast } from "react-toastify";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,29 +17,30 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/gantavyaAdmin/user/login",
+        {
+          email,
+          password,
+        }
+      );
 
-    axios
-      .post("http://localhost:8080/gantavyaAdmin/user/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(
-          "Response data in JSON format:",
-          JSON.stringify(response.data)
-        );
-        toast.success("Login successful!");
-        localStorage.setItem("admin", true);
+      console.log(
+        "Response data in JSON format:",
+        JSON.stringify(response.data)
+      );
+      toast.success("Login successful!");
+      localStorage.setItem("admin", true);
 
-        
-        navigate("/users");
-      })
-      .catch((error) => {
-        console.error("Sign In error:", error);
-        toast.error("Invalid email or password!");
-      });
+      onLogin(); // Call the onLogin function passed as a prop
+      navigate("/", { replace: true });
+    } catch (error) {
+      console.error("Sign In error:", error);
+      toast.error("Invalid email or password!");
+    }
   };
 
   return (

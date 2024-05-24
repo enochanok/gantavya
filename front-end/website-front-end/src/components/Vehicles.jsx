@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function Vehicles() {
   const [cars, setCars] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const carsPerPage = 2;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,11 +38,26 @@ function Vehicles() {
     navigate(`/Vehicles/${car.modelName}`, { state: { carDetails } });
   };
 
+  const nextPage = () => {
+    if (currentPage < Math.ceil(cars.length / carsPerPage) - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const startIndex = currentPage * carsPerPage;
+  const selectedCars = cars.slice(startIndex, startIndex + carsPerPage);
+
   return (
     <div className="Main_container">
       <div className="Secondary">
         <h2 className="mainh2">Select Vehicle</h2>
-        {cars.map((car, index) => (
+        {selectedCars.map((car, index) => (
           <div className="Select_main" key={index}>
             <div className="image_container">
               <img src={car.Image} alt={car.name} />
@@ -66,6 +83,26 @@ function Vehicles() {
             </div>
           </div>
         ))}
+        <div className="pagination">
+          <button
+            onClick={previousPage}
+            disabled={currentPage === 0}
+            className={currentPage === 0 ? "disabled-button" : ""}
+          >
+            Previous
+          </button>
+          <button
+            onClick={nextPage}
+            disabled={currentPage >= Math.ceil(cars.length / carsPerPage) - 1}
+            className={
+              currentPage >= Math.ceil(cars.length / carsPerPage) - 1
+                ? "disabled-button"
+                : ""
+            }
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

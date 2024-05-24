@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Details.css";
 
 const Input = () => {
   const navigate = useNavigate();
-
   const [pickLocation, setPickLocation] = useState("");
   const [dropLocation, setDropLocation] = useState("");
   const [pickDate, setPickDate] = useState("");
   const [dropDate, setDropDate] = useState("");
+  const [pickLocationResults, setPickLocationResults] = useState([]);
+  const [dropLocationResults, setDropLocationResults] = useState([]);
+
+  const pickLocationRef = useRef();
+  const dropLocationRef = useRef();
 
   const handleFindButtonClick = () => {
     if (!pickLocation || !dropLocation || !pickDate || !dropDate) {
@@ -36,10 +40,75 @@ const Input = () => {
     navigate("/Vehicles", { state: sendData });
   };
 
+  const fetchData = (value, setResults) => {
+    fetch(
+      `https://api.baato.io/api/v1/search?key=bpk.lk13VHHTkngLRnhTXX0fwpf3C6xtEawyCZZTz877OArS&q=${value}&limit=5`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setResults(data.data || []);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  const handlePickLocationChange = (e) => {
+    const value = e.target.value;
+    setPickLocation(value);
+    if (value) {
+      fetchData(value, setPickLocationResults);
+    } else {
+      setPickLocationResults([]);
+    }
+  };
+
+  const handleDropLocationChange = (e) => {
+    const value = e.target.value;
+    setDropLocation(value);
+    if (value) {
+      fetchData(value, setDropLocationResults);
+    } else {
+      setDropLocationResults([]);
+    }
+  };
+
+  const handlePickLocationSelect = (location) => {
+    setPickLocation(location);
+    setPickLocationResults([]);
+  };
+
+  const handleDropLocationSelect = (location) => {
+    setDropLocation(location);
+    setDropLocationResults([]);
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      pickLocationRef.current &&
+      !pickLocationRef.current.contains(event.target)
+    ) {
+      setPickLocationResults([]);
+    }
+    if (
+      dropLocationRef.current &&
+      !dropLocationRef.current.contains(event.target)
+    ) {
+      setDropLocationResults([]);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="content">
       <div className="row">
-        <div className="col-md-6">
+        <div className="col-md-6" ref={pickLocationRef}>
           <label htmlFor="pickupLocation">Pick Up Location:</label>
           <input
             type="text"
@@ -48,10 +117,22 @@ const Input = () => {
             id="pickupLocation"
             placeholder="Enter Pickup Location"
             value={pickLocation}
-            onChange={(e) => setPickLocation(e.target.value)}
+            onChange={handlePickLocationChange}
           />
+          {pickLocationResults.length > 0 && (
+            <ul className="dropdown">
+              {pickLocationResults.map((result, index) => (
+                <li
+                  key={index}
+                  onClick={() => handlePickLocationSelect(result.name)}
+                >
+                  {result.name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6" ref={dropLocationRef}>
           <label htmlFor="dropLocation">Drop Off Location:</label>
           <input
             type="text"
@@ -60,8 +141,20 @@ const Input = () => {
             id="dropLocation"
             placeholder="Enter Drop Off Location"
             value={dropLocation}
-            onChange={(e) => setDropLocation(e.target.value)}
+            onChange={handleDropLocationChange}
           />
+          {dropLocationResults.length > 0 && (
+            <ul className="dropdown">
+              {dropLocationResults.map((result, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleDropLocationSelect(result.name)}
+                >
+                  {result.name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       <div className="row">

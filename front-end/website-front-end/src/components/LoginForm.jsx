@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import Signup from "./SignUp.jsx";
-import { RxCross2 } from "react-icons/rx";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 const LoginForm = ({ onClose }) => {
@@ -39,8 +37,10 @@ const LoginForm = ({ onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
+      handelLogin();
       console.log("Useremail:", email);
       console.log("Password:", password);
+
       setEmail("");
       setPassword("");
       onClose();
@@ -56,8 +56,11 @@ const LoginForm = ({ onClose }) => {
   const validate = () => {
     let isValid = true;
 
-    if (username.length === 0) {
-      setUsernameError("Username is required");
+    if (email.length === 0) {
+      setUsernameError("Email is required");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setUsernameError("Please enter a valid email address");
       isValid = false;
     } else {
       setUsernameError("");
@@ -66,22 +69,14 @@ const LoginForm = ({ onClose }) => {
     if (/\s/.test(password)) {
       setPasswordError("Please remove white spaces");
       isValid = false;
-    } else if (password.length < 8) {
-      setPasswordError("Password must be 8 characters or more");
-      isValid = false;
-    } else if (!validatePassword(password)) {
-      setPasswordError("Password enter a valid password");
+    } else if (password.length === 0) {
+      setPasswordError("Password is required");
       isValid = false;
     } else {
       setPasswordError("");
     }
 
     return isValid;
-  };
-
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*\s).{8,}$/;
-    return passwordRegex.test(password);
   };
 
   const handleForgotPassword = () => {
@@ -108,7 +103,7 @@ const LoginForm = ({ onClose }) => {
               <h3 onClick={onClose}>X</h3>
             </div>
             <div className="form-group">
-              <label htmlFor="email">Username:</label>
+              <label htmlFor="email">Email:</label>
               <input
                 type="text"
                 id="username"
@@ -151,9 +146,7 @@ const LoginForm = ({ onClose }) => {
                 </span>
               )}
             </div>
-            <button type="submit" onClick={handelLogin}>
-              Login
-            </button>
+            <button type="submit">Login</button>
             <div className="login-options">
               <a href="#" onClick={handleForgotPassword}>
                 Forgot Password?

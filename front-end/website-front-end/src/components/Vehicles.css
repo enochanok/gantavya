@@ -9,7 +9,7 @@
   padding: 40px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5;z
 }
 
 .Main_container {
@@ -102,4 +102,27 @@
 
 .Select_details button:hover {
   background-color: #33b35e;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin: 30px 50px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #33b35e;
+  color: #fff;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.pagination button.disabled-button {
+  cursor: not-allowed;
+  background-color: grey;
+  color: black;
 }
