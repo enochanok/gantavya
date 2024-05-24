@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import LoginForm from "./components/LoginForm";
@@ -18,6 +19,18 @@ import UserDetail from "./Pages/AdminUser";
 import PaymentForm from "./components/PaymentComponent";
 
 function App() {
+  useEffect(() => {
+    const loadScript = (url) => {
+      const script = document.createElement("script");
+      script.src = url;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    };
+    // loading Google Places API
+    loadScript(`https://maps.googleapis.com/maps/api/js?key=AIzaSyCFgbrXXTfvff5kEjbtZ7TyIPCII1DVf64&libraries=places`);
+  }, []);
+
   return (
     <>
       <BrowserRouter>
