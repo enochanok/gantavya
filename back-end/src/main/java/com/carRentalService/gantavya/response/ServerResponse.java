@@ -8,12 +8,26 @@ public class ServerResponse {
 
     private String message;
     private boolean isSuccess;
+    private Object data;
+
+    // Add a constructor with data
+    public ServerResponse() {}
+
 
     public static ResponseEntity<ServerResponse> successResponse(String msg) {
         ServerResponse serverResponse = new ServerResponse();
         serverResponse.setMessage(msg);
         serverResponse.setIsSuccess(true);
         return new ResponseEntity<>(serverResponse, HttpStatus.ACCEPTED);
+    }
+
+    // Overloaded method to include data in success response
+    public static ResponseEntity<ServerResponse> successResponse(Object data) {
+        ServerResponse serverResponse = new ServerResponse();
+        serverResponse.setMessage("Success");
+        serverResponse.setIsSuccess(true);
+        serverResponse.setData(data);
+        return new ResponseEntity<>(serverResponse, HttpStatus.OK);
     }
 
     public static ResponseEntity<ServerResponse> failureResponse(String msg) {
@@ -37,7 +51,7 @@ public class ServerResponse {
         return new ResponseEntity<>(serverResponse, headers, httpStatus);
     }
 
-
+    // Getters and Setters
     public String getMessage() {
         return message;
     }
@@ -54,4 +68,11 @@ public class ServerResponse {
         this.isSuccess = isSuccess;
     }
 
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
 }

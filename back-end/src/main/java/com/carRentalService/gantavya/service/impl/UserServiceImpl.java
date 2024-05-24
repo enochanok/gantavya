@@ -14,35 +14,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-    // injecting userRepo dependency
     @Autowired
     UserRepo userRepo;
-    // Method to create new user
+
     @Override
     public ResponseEntity<ServerResponse> createUser(UserCreateRequest userCreateRequest) {
         try {
             validateRequest(userCreateRequest);
-            //saving user to database
             Users user = setterMethodOfUser(userCreateRequest);
             userRepo.save(user);
             return ServerResponse.successResponse("User has been created successfully");
-        } catch(Exception e){
-            // In case of failure to create user object and set in database
-            return ServerResponse.failureResponse(e + "Error while creating");
+        } catch (Exception e) {
+            return ServerResponse.failureResponse("Error while creating user: " + e.getMessage());
         }
     }
 
     @Override
     public ResponseEntity<ServerResponse> updateUser(Integer id, UserUpdateRequest userUpdateRequest) {
         try {
-            // Find user by id
             Users user = userRepo.findById(id).orElseThrow(() -> new Exception("User not found"));
-
-            // Update user details with request data (if provided)
             if (userUpdateRequest.getFull_name() != null) {
                 user.setFull_name(userUpdateRequest.getFull_name());
             }
@@ -52,65 +48,52 @@ public class UserServiceImpl implements UserService {
             if (userUpdateRequest.getPhone_number() != null) {
                 user.setPhone_number(userUpdateRequest.getPhone_number());
             }
-            // Save updated user to database
             userRepo.save(user);
             return ServerResponse.successResponse("User has been updated successfully");
         } catch (Exception e) {
-            return ServerResponse.failureResponse(e + "Error while updating user");
+            return ServerResponse.failureResponse("Error while updating user: " + e.getMessage());
         }
     }
 
     @Override
     public ResponseEntity<ServerResponse> getUserById(Integer id) {
         try {
-            // Find user by id
             Optional<Users> userOptional = userRepo.findById(id);
             if (userOptional.isEmpty()) {
                 throw new Exception("User not found");
             }
             Users user = userOptional.get();
-            return ServerResponse.successResponse(user.toString()); // Modify response as needed
+            return ServerResponse.successResponse(user);
         } catch (Exception e) {
-            return ServerResponse.failureResponse(e + "Error while fetching user");
+            return ServerResponse.failureResponse("Error while fetching user: " + e.getMessage());
         }
     }
 
     @Override
     public ResponseEntity<ServerResponse> getAllUsers() {
         try {
-            // Get all users from database
-            Iterable<Users> users = userRepo.findAll();
-            // You can iterate through users and build a response object
-            StringBuilder userList = new StringBuilder();
-            for (Users user : users) {
-                userList.append(user.toString()).append("\n"); // Modify response as needed
-            }
-            return ServerResponse.successResponse(userList.toString());
+            Iterable<Users> usersIterable = userRepo.findAll();
+            List<Users> usersList = new ArrayList<>();
+            usersIterable.forEach(usersList::add);
+            return ServerResponse.successResponse(usersList);
         } catch (Exception e) {
-            return ServerResponse.failureResponse(e + "Error while fetching all users");
+            return ServerResponse.failureResponse("Error while fetching all users: " + e.getMessage());
         }
     }
 
     @Override
     public ResponseEntity<ServerResponse> loginUser(LoginRequest loginRequest) {
         try {
-            // Validate login request
             if (!Validation.isEmailValid(loginRequest.getEmail()) ||
                     !Validation.isPasswordValid(loginRequest.getPassword())) {
                 throw new ValidationException("Invalid email or password");
             }
-
-            // Find user by email
             Optional<Users> userOptional = userRepo.findByEmail(loginRequest.getEmail());
             if (userOptional.isEmpty()) {
                 throw new Exception("User not found");
             }
             Users user = userOptional.get();
-
-            // Hash the provided password for comparison
             String hashedInputPassword = PasswordEncrypt.encodePassword(loginRequest.getPassword());
-
-            // Check if hashed password matches the one stored in the database
             if (hashedInputPassword != null && !hashedInputPassword.equals(user.getPassword())) {
                 return ServerResponse.failureResponse("Incorrect password");
             }
@@ -120,20 +103,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
-
-
-    // method to getting user details when creating new user
     private Users setterMethodOfUser(UserCreateRequest userCreateRequest) {
         Users user = new Users();
         user.setFull_name(userCreateRequest.getFull_name());
         user.setEmail(userCreateRequest.getEmail());
         user.setPhone_number(userCreateRequest.getPhone_number());
-        user.setPassword(PasswordEncrypt.encodePassword( userCreateRequest.getPassword()));
+        user.setPassword(PasswordEncrypt.encodePassword(userCreateRequest.getPassword()));
         return user;
     }
 
-    public static void validateRequest(UserCreateRequest userCreateRequest){
+    public static void validateRequest(UserCreateRequest userCreateRequest) {
         if (!Validation.isNameValid(userCreateRequest.getFull_name()) ||
                 !Validation.isEmailValid(userCreateRequest.getEmail()) ||
                 !Validation.isPasswordValid(userCreateRequest.getPassword())) {
