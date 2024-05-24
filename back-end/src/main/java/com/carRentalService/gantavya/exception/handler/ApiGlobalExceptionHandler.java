@@ -30,5 +30,4 @@ public class ApiGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         }
         return ServerResponse.exceptionResponse(errorMsg, headers, (HttpStatus) status);
     }
-
 }

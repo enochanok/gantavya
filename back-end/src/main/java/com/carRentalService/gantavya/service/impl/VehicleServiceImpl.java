@@ -50,6 +50,7 @@ public class  VehicleServiceImpl implements VehicleService {
         Vehicles vehicle = new Vehicles();
         vehicle.setModel_Name(vehicleCreateRequest.getModel_name());
         vehicle.setVehicle_type(vehicleCreateRequest.getVehicle_type());
+        vehicle.setNumber_plate(vehicleCreateRequest.getNumber_plate());
         vehicle.setSeat(vehicleCreateRequest.getSeat());
         vehicle.setDoor(vehicleCreateRequest.getDoor());
         vehicle.setLuggage(vehicleCreateRequest.getLuggage());
@@ -62,7 +63,7 @@ public class  VehicleServiceImpl implements VehicleService {
     public ResponseEntity<ServerResponse> modifyVehicle(VehicleModifyRequest vehicleModifyRequest) {
         Optional<Vehicles> vehicleDetail = vehicleRepo.findById(vehicleModifyRequest.getId());
         if (vehicleDetail.isEmpty()) {
-            throw new ProcessNotAllowedException("Unable to modify the district. District does not exist.");
+            throw new ProcessNotAllowedException("Unable to modify the vehicle. Vehicle does not exist.");
         }
 
         vehicleDetail = Optional.of(modifyVehicleSetterProcess(vehicleDetail.get(),vehicleModifyRequest));
@@ -86,6 +87,5 @@ public class  VehicleServiceImpl implements VehicleService {
         vehicleDetails.setFuel_type(vehicleModifyRequest.getFuel_type());
         vehicleDetails.setDay_price(vehicleModifyRequest.getDay_price());
         return vehicleDetails;
-
     }
 }
