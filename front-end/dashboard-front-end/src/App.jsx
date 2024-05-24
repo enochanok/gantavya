@@ -8,7 +8,6 @@ function App() {
 
   useEffect(() => {
     const data = localStorage.getItem("admin");
-
     if (data) {
       setIsLoggedIn(true);
     }
@@ -23,8 +22,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {" "}
-      {/* Wrap your components with BrowserRouter */}
       {isLoggedIn ? <AppController /> : <Login onLogin={handleLogin} />}
     </BrowserRouter>
   );
