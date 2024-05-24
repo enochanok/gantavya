@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.vehicle-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 11rem auto;
+  max-width: 900px;
+  padding: 1rem;
+  align-item: center;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.vehicle-details h2 {
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.top-row,
+.middle-row,
+.bottom-row {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+button {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.bottom-row .form-group {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 250px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

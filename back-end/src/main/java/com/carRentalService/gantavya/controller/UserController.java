@@ -1,6 +1,7 @@
 package com.carRentalService.gantavya.controller;
 
 import com.carRentalService.gantavya.constants.PathConstant;
+import com.carRentalService.gantavya.request.user.LoginRequest;
 import com.carRentalService.gantavya.request.user.UserCreateRequest;
 import com.carRentalService.gantavya.request.user.UserUpdateRequest;
 import com.carRentalService.gantavya.response.ServerResponse;
@@ -39,5 +40,10 @@ public class UserController {
     @GetMapping(PathConstant.FETCH_ALL_USER)
     public ResponseEntity<ServerResponse> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @PostMapping(PathConstant.LOGIN_USER)
+    public ResponseEntity<ServerResponse> loginUser(@RequestBody LoginRequest loginRequest) {
+        return userService.loginUser(loginRequest);
     }
 }

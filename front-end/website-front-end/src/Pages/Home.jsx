@@ -5,6 +5,8 @@ import LoginForm from "../components/LoginForm";
 import Signup from "../components/SignUp";
 import Works from "../components/Works";
 import Header from "../components/Header";
+import AboutUs from "../components/AboutUs";
+import ContactUs from "../components/ContactUs";
 
 function Home() {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -23,6 +25,9 @@ function Home() {
       {showSignupForm && <Signup onClose={handleSignUpClick} />}
       <Header />
       <Works />
+
+      <ContactUs />
+      <AboutUs />
       <Footer />
     </div>
   );

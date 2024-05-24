@@ -1,0 +1,21 @@
+.data-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* Set container height to fill the viewport */
+}
+
+.data-content {
+  display: flex;
+  flex: 1; /* Grow to fill remaining space */
+}
+
+.Side {
+  width: 20px; /* Adjust width as needed */
+  flex-shrink: 0;
+  color: blue; /* Prevent Side from shrinking */
+}
+
+.main-content {
+  flex: 1; /* Grow to fill remaining space */
+  overflow: auto; /* Add scroll if needed */
+}

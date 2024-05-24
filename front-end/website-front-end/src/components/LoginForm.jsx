@@ -1,21 +1,47 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import Signup from "./SignUp.jsx";
-import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ onClose }) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+
+  function handelLogin() {
+    axios
+      .post("http://localhost:8080/gantavyaAdmin/user/login", {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log(
+          "Response data in JSON format:",
+          JSON.stringify(response.data)
+        );
+        toast.success("Login successful!");
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        localStorage.setItem("status", "true");
+      })
+      .catch((error) => {
+        console.error("Sign In error:", error);
+        toast.error("Invalid email or password!");
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Username:", username);
+      handelLogin();
+      console.log("Useremail:", email);
       console.log("Password:", password);
-      setUsername("");
+
+      setEmail("");
       setPassword("");
       onClose();
     }
@@ -30,8 +56,11 @@ const LoginForm = ({ onClose }) => {
   const validate = () => {
     let isValid = true;
 
-    if (username.length === 0) {
-      setUsernameError("Username is required");
+    if (email.length === 0) {
+      setUsernameError("Email is required");
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setUsernameError("Please enter a valid email address");
       isValid = false;
     } else {
       setUsernameError("");
@@ -40,24 +69,14 @@ const LoginForm = ({ onClose }) => {
     if (/\s/.test(password)) {
       setPasswordError("Please remove white spaces");
       isValid = false;
-    } else if (password.length < 8) {
-      setPasswordError("Password must be 8 characters or more");
-      isValid = false;
-    } else if (!validatePassword(password)) {
-      setPasswordError(
-        "Password must contain at least one uppercase letter, one lowercase letter, and one digit"
-      );
+    } else if (password.length === 0) {
+      setPasswordError("Password is required");
       isValid = false;
     } else {
       setPasswordError("");
     }
 
     return isValid;
-  };
-
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?!.*\s).{8,}$/;
-    return passwordRegex.test(password);
   };
 
   const handleForgotPassword = () => {
@@ -84,12 +103,12 @@ const LoginForm = ({ onClose }) => {
               <h3 onClick={onClose}>X</h3>
             </div>
             <div className="form-group">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="email">Email:</label>
               <input
                 type="text"
                 id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               {usernameError && (
                 <span className="error" style={{ color: "red" }}>

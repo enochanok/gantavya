@@ -1,0 +1,31 @@
+.td-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.td-container button:hover {
+  background-color: #45a049;
+}
+
+.td-container button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.td-container input {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

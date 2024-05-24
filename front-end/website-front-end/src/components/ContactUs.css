@@ -46,7 +46,7 @@ body {
   gap: 10px;
 }
 
-.form input[type="text"],
+.form input,
 .form button {
   padding: 10px;
   border: 1px solid #ccc;

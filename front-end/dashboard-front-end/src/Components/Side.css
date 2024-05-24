@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Sidebar {
+  height: 100vh;
+  width: 200px;
+  background-color: #2f4050;
+  position: fixed;
+}
+
+.Sidebarlist {
+  height: auto;
+  padding: 0;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.Sidebarlist .sidebarrow {
+  width: 100%;
+  height: 60px;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.Sidebarlist .sidebarrow .icon {
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.Sidebarlist .sidebarrow .title {
+  flex: 70%;
+}
+
+.Sidebarlist .sidebarrow:hover {
+  cursor: pointer;
+  background-color: #293846;
+}
+
+.Sidebarlist .sidebarrow#active {
+  background-color: #293846;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  margin-top: 8px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.Sidebarlist .sidebarrow.active {
+  background-color: #293846;
+  color: #ffffff;
+}
+
+.Sidebarlist .sidebarrow {
+  text-decoration: none;
+}
