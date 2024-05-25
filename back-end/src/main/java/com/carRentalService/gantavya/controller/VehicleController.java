@@ -39,7 +39,7 @@ public class VehicleController {
 
     @PostMapping(PathConstant.MODIFY_VEHICLE)
     public ResponseEntity<ServerResponse> modifyVehicle(
-            @RequestBody @Valid VehicleModifyRequest vehicleModifyRequest){
+            @Valid @ModelAttribute VehicleModifyRequest vehicleModifyRequest){
         return vehicleService.modifyVehicle(vehicleModifyRequest);
     }
 
