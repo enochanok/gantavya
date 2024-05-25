@@ -1,6 +1,7 @@
 package com.carRentalService.gantavya.service.impl;
 
 import com.carRentalService.gantavya.constants.MinioConstant;
+import com.carRentalService.gantavya.converter.VehicleDtoConverter;
 import com.carRentalService.gantavya.database.dao.VehicleDAO;
 import com.carRentalService.gantavya.database.entity.Vehicles;
 import com.carRentalService.gantavya.database.repo.VehicleRepo;
@@ -15,6 +16,8 @@ import com.carRentalService.gantavya.service.VehicleService;
 import com.carRentalService.gantavya.utils.DocumentUtil;
 import com.carRentalService.gantavya.utils.SearchResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +39,10 @@ public class  VehicleServiceImpl implements VehicleService {
 
     @Autowired
     MinioService minioService;
+
+    @Autowired
+            @Lazy
+    VehicleDtoConverter vehicleDtoConverter;
 
 
     @Override
@@ -87,10 +94,10 @@ public class  VehicleServiceImpl implements VehicleService {
         } catch (IOException e) {
             throw new ProcessNotAllowedException("Unable to Upload image");
         }
-        String fileSize = "250";
+        String fileSize = "1000";
         long fileSizeInBytes = Long.parseLong(fileSize) * 1024;
         if (fileInStream.length > fileSizeInBytes) {
-            throw new ProcessNotAllowedException("Please enter valid file, Max Size is " + fileSize + " kb. ");
+            throw new ProcessNotAllowedException("Please enter valid file, Max Size is " + fileSize + " KB. ");
         }
         //MIME - Multi-purpose Internet Mail Extensions
         String mimeType = documentUtil.getMimeTypeFromBytes(fileInStream, MinioConstant.IMAGE_MIME_CONSTANTS);
@@ -129,6 +136,8 @@ public class  VehicleServiceImpl implements VehicleService {
         }
     }
 
+
+
     private Vehicles modifyVehicleSetterProcess(Vehicles vehicleDetails, VehicleModifyRequest vehicleModifyRequest) {
         String imageURL = null;
 //        Vehicles vehicles = new Vehicles();
@@ -155,7 +164,7 @@ public class  VehicleServiceImpl implements VehicleService {
         } catch (IOException e) {
             throw new ProcessNotAllowedException("Unable to Upload image");
         }
-        String fileSize = "250";
+        String fileSize = "1000";
         long fileSizeInBytes = Long.parseLong(fileSize) * 1024;
         if (fileInStream.length > fileSizeInBytes) {
             throw new ProcessNotAllowedException("Please enter valid file, Max Size is " + fileSize + " kb. ");
@@ -177,6 +186,18 @@ public class  VehicleServiceImpl implements VehicleService {
         }
 
         return generatedFileName;
+    }
+
+    @Override
+    public ResponseEntity<VehicleDto> getVehicleById(Integer id) {
+        Vehicles vehicles = vehicleRepo.getVehicleById(id);
+        
+        if (vehicles == null) {
+            throw new ProcessNotAllowedException("Vehicle not found");
+        }
+
+        VehicleDto vehicleDto = vehicleDtoConverter.getVehicleDto(vehicles);
+        return new ResponseEntity<>(vehicleDto, HttpStatus.ACCEPTED);
     }
 
 }

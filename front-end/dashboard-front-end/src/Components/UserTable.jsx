@@ -38,9 +38,11 @@ function UserTable() {
     if (searchQuery === "") return true;
     const upperCaseQuery = searchQuery.toUpperCase();
     return (
-      (user.full_name && user.full_name.toUpperCase() === upperCaseQuery) ||
-      (user.email && user.email.toUpperCase() === upperCaseQuery) ||
-      (user.phone_number && user.phone_number.toUpperCase() === upperCaseQuery)
+        (user.full_name &&
+            user.full_name.toUpperCase().includes(upperCaseQuery)) ||
+        (user.email && user.email.toUpperCase().includes(upperCaseQuery)) ||
+        (user.phone_number &&
+            user.phone_number.toUpperCase().includes(upperCaseQuery))
     );
   });
 
@@ -59,53 +61,53 @@ function UserTable() {
   };
 
   return (
-    <>
-      {showModal ? (
-        <CreateUser onclose={closeModal} />
-      ) : (
-        <div className="table-container">
-          <div className="button-div">
-            <h2 className="left">Users</h2>
+      <>
+        {showModal ? (
+            <CreateUser onclose={closeModal} />
+        ) : (
+            <div className="table-container">
+              <div className="button-div">
+                <h2 className="left">Users</h2>
 
-            <button className="create-button" onClick={toggleModal}>
-              Create
-            </button>
-          </div>
-          <input
-            type="text"
-            placeholder="Search users by name, email or phone number"
-            value={searchQuery}
-            onChange={handleSearch}
-            id="myInput"
-          />
-          {currentUsers.length > 0 ? (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentUsers.map((user) => (
-                  <UserData key={user.id} user={user} />
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div>No records found</div>
-          )}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            paginate={paginate}
-          />
-        </div>
-      )}
-    </>
+                <button className="create-button" onClick={toggleModal}>
+                  Create
+                </button>
+              </div>
+              <input
+                  type="text"
+                  placeholder="Search users by name, email or phone number"
+                  value={searchQuery}
+                  onChange={handleSearch}
+                  id="myInput"
+              />
+              {currentUsers.length > 0 ? (
+                  <table className="table">
+                    <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {currentUsers.map((user) => (
+                        <UserData key={user.id} user={user} />
+                    ))}
+                    </tbody>
+                  </table>
+              ) : (
+                  <div>No records found</div>
+              )}
+              <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  paginate={paginate}
+              />
+            </div>
+        )}
+      </>
   );
 }
 

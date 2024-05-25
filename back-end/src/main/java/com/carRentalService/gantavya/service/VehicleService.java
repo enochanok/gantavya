@@ -1,5 +1,6 @@
 package com.carRentalService.gantavya.service;
 
+import com.carRentalService.gantavya.dto.VehicleDto;
 import com.carRentalService.gantavya.request.vehicle.VehicleCreateRequest;
 import com.carRentalService.gantavya.request.vehicle.VehicleModifyRequest;
 import com.carRentalService.gantavya.response.SearchResponse;
@@ -19,4 +20,6 @@ public interface VehicleService {
     ResponseEntity<SearchResponse> fetchAllVehicle(Map<String, String> allRequestParams);
 
     ResponseEntity<ServerResponse> modifyVehicle(VehicleModifyRequest vehicleModifyRequest);
+
+    ResponseEntity<VehicleDto> getVehicleById(Integer id);
 }

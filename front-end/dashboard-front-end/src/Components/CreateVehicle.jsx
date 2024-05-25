@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CreateVehicle.css";
-import Axios from "./Axios";
+// import Axios from "./Axios";
+import Axios from "axios";
 
 const ApiKey = "http://localhost:8080/gantavyaAdmin/vehicle/createVehicle";
 const VehicleDetails = ({ onCancel }) => {
@@ -8,7 +9,6 @@ const VehicleDetails = ({ onCancel }) => {
     model_name: "",
     vehicle_type: "",
     number_plate: "",
-    image: "",
     seat: "",
     door: "",
     luggage: "",
@@ -35,7 +35,17 @@ const VehicleDetails = ({ onCancel }) => {
     if (image) {
       formData.append("image", image);
     }
-    Axios.post(ApiKey, formData)
+
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}: ${pair[1]}`);
+    }
+
+    Axios.post(ApiKey, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        // 'Content-Type' will be set automatically to 'multipart/form-data' including the boundary
+      },
+    })
       .then((response) => {
         console.log("Vehicle created successfully:", response.data);
       })
@@ -123,9 +133,9 @@ const VehicleDetails = ({ onCancel }) => {
               value={data.fuel_type}
               onChange={handleChange}
             >
-              <option value="electric">Electric</option>
-              <option value="diesel">Diesel</option>
-              <option value="petrol">Petrol</option>
+              <option value="Electric">Electric</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Petrol">Petrol</option>
             </select>
           </div>
           <div className="form-group">
@@ -145,6 +155,7 @@ const VehicleDetails = ({ onCancel }) => {
               type="file"
               id="image"
               name="image"
+              accept="image/x-png,image/jpg,image/jpeg"
               onChange={handleFileChange}
             />
           </div>

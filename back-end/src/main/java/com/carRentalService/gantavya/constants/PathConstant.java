@@ -16,6 +16,9 @@ public class PathConstant {
     public final static String CREATE_VEHICLE = "createVehicle";
     public final static String FETCH_ALL_VEHICLES = "fetchAllVehicle";
     public final static String MODIFY_VEHICLE = "modifyVehicle";
+    public final static String DETAIL_VEHICLE = "detailVehicle";
+
+
 
 
     // booking
@@ -23,6 +26,7 @@ public class PathConstant {
     public final static String FETCH_ALL_BOOKING = "fetchAllBooking";
     public final static String CREATE_BOOKING = "creatingBooking";
     public final static String MODIFY_BOOKING = "modifyBooking";
+
 
 
 }

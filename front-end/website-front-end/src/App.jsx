@@ -28,7 +28,7 @@ function App() {
       document.body.appendChild(script);
     };
     // loading Google Places API
-    loadScript(`https://maps.googleapis.com/maps/api/js?key="API_KEY"&libraries=places`);
+    loadScript(`https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJvYy8974YJQfwGlxhFVMVcli5X8mcCo&libraries=places`);
   }, []);
 
   return (
