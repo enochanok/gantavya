@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UserData({ user }) {
   const [editId, setEditID] = useState(-1);
   const [fullName, setFullName] = useState(user.full_name || "");
   const [email, setEmail] = useState(user.email || "");
   const [phone, setPhone] = useState(user.phone_number || "");
+  const Navigate = useNavigate();
 
   function handleEdit(id) {
     setEditID(id);
@@ -39,6 +41,10 @@ function UserData({ user }) {
         console.log(jsonData);
         console.error("Error making PUT request:", error);
       });
+  }
+
+  function handleViewProfile() {
+    Navigate(`/Profile/${user.id}`);
   }
 
   return (
@@ -98,7 +104,7 @@ function UserData({ user }) {
           <td>{user.phone_number}</td>
 
           <td className="td-container">
-            <button>view</button>
+            <button onClick={handleViewProfile}>View</button>
             <button onClick={() => handleEdit(user.id)}>Edit</button>
           </td>
         </tr>

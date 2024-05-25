@@ -13,6 +13,21 @@
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
+#myInput {
+  outline: none;
+  padding: 12px;
+  border: 1px solod black;
+  font-size: 14px;
+  color: #333;
+  width: 32%;
+  margin: 8px;
+}
+
+#myInput::placeholder {
+  color: #999;
+  font-weight: bold;
+}
+
 .button-div {
   display: flex;
   fiex-direction: column;
@@ -98,10 +113,9 @@
   background-color: #fefefe;
   padding: 20px;
   border-radius: 5px;
-  width: 50%; /* Adjust width as needed */
+  width: 50%;
 }
 
-/* Close button */
 .close {
   color: #aaa;
   float: right;

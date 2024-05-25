@@ -4,6 +4,8 @@ import UserPage from "./UserPage";
 import UserData from "./VehicleData";
 import BookingPage from "./BookingPage";
 import Login from "../Components/Login";
+import ProfilePage from "../Components/Profile.jsx";
+
 function AppController() {
   return (
     <>
@@ -13,6 +15,7 @@ function AppController() {
         <Route path="/booking" element={<BookingPage />} exact />
         <Route path="/vehicle" element={<UserData />} exact />
         <Route path="/login" element={<Login />} exact />
+        <Route path="/Profile/:userId" element={<ProfilePage />} />
       </Routes>
     </>
   );

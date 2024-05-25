@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Swal from "sweetalert2"; // Import SweetAlert
+import Swal from "sweetalert2";
 import "./ProductData.css";
 import axios from "axios";
 
-function ProductData({ product, user }) {
+function ProductData({ product }) {
   const [editId, setEditID] = useState(-1);
   const [modelName, setModelName] = useState(product.modelName || "");
   const [vehicleType, setVehicleType] = useState(product.vehicleType || "");
@@ -18,7 +18,7 @@ function ProductData({ product, user }) {
   function handleEdit(id) {
     setEditID(id);
   }
-
+ 
   function handleUpdate() {
     const data = {
       id: id,
