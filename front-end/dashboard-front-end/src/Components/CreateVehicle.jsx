@@ -15,13 +15,32 @@ const VehicleDetails = ({ onCancel }) => {
     day_price: "",
   });
 
+  const [image, setImage] = useState(null);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
   };
 
+  const handleFileChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
   const handleCreate = () => {
-    Axios(data, ApiKey);
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
+    if (image) {
+      formData.append("image", image);
+    }
+    Axios.post(ApiKey, formData)
+      .then((response) => {
+        console.log("Vehicle created successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error creating the vehicle:", error);
+      });
   };
 
   return (
@@ -29,7 +48,7 @@ const VehicleDetails = ({ onCancel }) => {
       <div>
         <h2>Add Vehicle</h2>
       </div>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="top-row">
           <div className="form-group">
             <label htmlFor="model_name">Model Name:</label>
@@ -64,7 +83,7 @@ const VehicleDetails = ({ onCancel }) => {
         </div>
         <div className="middle-row">
           <div className="form-group">
-            <label htmlFor="seat">Seats:</label>
+            <label htmlFor="seat">Seat:</label>
             <input
               type="number"
               id="seat"
@@ -74,7 +93,7 @@ const VehicleDetails = ({ onCancel }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="door">Doors:</label>
+            <label htmlFor="door">Door:</label>
             <input
               type="number"
               id="door"
@@ -84,7 +103,7 @@ const VehicleDetails = ({ onCancel }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="luggage">Luggage Capacity:</label>
+            <label htmlFor="luggage">Luggage:</label>
             <input
               type="number"
               id="luggage"
@@ -120,18 +139,20 @@ const VehicleDetails = ({ onCancel }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="Image">Image:</label>
+            <label htmlFor="image">Image:</label>
             <input
               type="file"
               id="image"
               name="image"
-              value=""
-              onChange={handleChange}
+              onChange={handleFileChange}
             />
           </div>
         </div>
-        <button onClick={handleCreate}>Create</button>
+        <button type="button" onClick={handleCreate}>
+          Create
+        </button>
         <button
+          type="button"
           onClick={() => {
             onCancel(false);
           }}

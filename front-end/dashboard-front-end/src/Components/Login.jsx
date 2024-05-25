@@ -35,7 +35,6 @@ const Login = ({ onLogin }) => {
       toast.success("Login successful!");
       localStorage.setItem("admin", true);
 
-      onLogin(); // Call the onLogin function passed as a prop
       navigate("/", { replace: true });
     } catch (error) {
       console.error("Sign In error:", error);
