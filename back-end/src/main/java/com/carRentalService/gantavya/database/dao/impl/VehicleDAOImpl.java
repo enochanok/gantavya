@@ -29,6 +29,7 @@ public class VehicleDAOImpl implements VehicleDAO {
                     + " v.model_name as modelName,"
                     + " v.vehicle_type as vehicleType,"
                     + " v.number_plate as numberPlate,"
+                    + " v.image as image,"
                     + " v.seat as seat,"
                     + " v.door as door,"
                     + " v.luggage as luggage,"

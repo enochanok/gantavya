@@ -17,7 +17,6 @@ public class VehicleModifyRequest {
     private String model_name;
     private String number_plate;
     private String vehicle_type;
-    private String number_plate;
     private String seat;
     private String door;
     private String luggage;

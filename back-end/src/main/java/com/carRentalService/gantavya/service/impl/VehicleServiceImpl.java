@@ -1,5 +1,6 @@
 package com.carRentalService.gantavya.service.impl;
 
+import com.carRentalService.gantavya.constants.MinioConstant;
 import com.carRentalService.gantavya.database.dao.VehicleDAO;
 import com.carRentalService.gantavya.database.entity.Vehicles;
 import com.carRentalService.gantavya.database.repo.VehicleRepo;
@@ -9,11 +10,15 @@ import com.carRentalService.gantavya.request.vehicle.VehicleCreateRequest;
 import com.carRentalService.gantavya.request.vehicle.VehicleModifyRequest;
 import com.carRentalService.gantavya.response.SearchResponse;
 import com.carRentalService.gantavya.response.ServerResponse;
+import com.carRentalService.gantavya.service.MinioService;
 import com.carRentalService.gantavya.service.VehicleService;
+import com.carRentalService.gantavya.utils.DocumentUtil;
 import com.carRentalService.gantavya.utils.SearchResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -26,11 +31,22 @@ public class  VehicleServiceImpl implements VehicleService {
     @Autowired
     VehicleDAO vehicleDAO;
 
+    @Autowired
+    DocumentUtil documentUtil;
+
+    @Autowired
+    MinioService minioService;
+
 
     @Override
     public ResponseEntity<SearchResponse> fetchAllVehicle(Map<String, String> allRequestParams) {
         List<VehicleDto>  vehicleDtos = vehicleDAO.getAllVehicle(allRequestParams);
-
+        for (VehicleDto vehicleDto : vehicleDtos) {
+            if (vehicleDto.getImage() != null) {
+                vehicleDto.setImage( "http://localhost:9000" + "/" + "gantavya" + "/" +
+                        vehicleDto.getImage());
+            }
+        }
         Long count = vehicleDAO.getTotalVehicleCount(allRequestParams);
         return SearchResponseUtil.getSearchResponseWithCount(vehicleDtos,count);
     }
@@ -47,16 +63,52 @@ public class  VehicleServiceImpl implements VehicleService {
     }
 
     private Vehicles setterMethodOfVehicle(VehicleCreateRequest vehicleCreateRequest) {
+        String imageURL = null;
         Vehicles vehicle = new Vehicles();
+        if(!(vehicleCreateRequest.getImage() == null || vehicleCreateRequest.getImage().isEmpty())){
+            imageURL = this.uploadImage(vehicleCreateRequest);
+        }
         vehicle.setModel_Name(vehicleCreateRequest.getModel_name());
         vehicle.setVehicle_type(vehicleCreateRequest.getVehicle_type());
         vehicle.setNumber_plate(vehicleCreateRequest.getNumber_plate());
         vehicle.setSeat(vehicleCreateRequest.getSeat());
+        vehicle.setImage(imageURL);
         vehicle.setDoor(vehicleCreateRequest.getDoor());
         vehicle.setLuggage(vehicleCreateRequest.getLuggage());
         vehicle.setFuel_type(vehicleCreateRequest.getFuel_type());
         vehicle.setDay_price(vehicleCreateRequest.getDay_price());
         return vehicle;
+    }
+
+    private String uploadImage(VehicleCreateRequest vehicleImage) {
+        byte[] fileInStream = new byte[0];
+        try{
+            fileInStream = vehicleImage.getImage().getBytes();
+        } catch (IOException e) {
+            throw new ProcessNotAllowedException("Unable to Upload image");
+        }
+        String fileSize = "250";
+        long fileSizeInBytes = Long.parseLong(fileSize) * 1024;
+        if (fileInStream.length > fileSizeInBytes) {
+            throw new ProcessNotAllowedException("Please enter valid file, Max Size is " + fileSize + " kb. ");
+        }
+        //MIME - Multi-purpose Internet Mail Extensions
+        String mimeType = documentUtil.getMimeTypeFromBytes(fileInStream, MinioConstant.IMAGE_MIME_CONSTANTS);
+        String generatedFileName = null;
+
+        try{
+            generatedFileName = documentUtil.generateVehicleFileName(mimeType);
+            minioService.uploadFile(
+                    fileInStream,
+                    "gantavya",
+                    generatedFileName,
+                    mimeType
+            );
+        }catch (Exception e){
+            throw new ProcessNotAllowedException("Unable to upload Image");
+        }
+
+        return generatedFileName;
     }
 
     @Override

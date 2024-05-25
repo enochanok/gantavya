@@ -26,6 +26,9 @@ public class Vehicles {
     @Column(name = "number_plate")
     private String number_plate;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "seat")
     private String seat;
 
