@@ -8,6 +8,7 @@ import com.carRentalService.gantavya.response.ServerResponse;
 import com.carRentalService.gantavya.service.VehicleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class VehicleController {
 
     @PostMapping(PathConstant.CREATE_VEHICLE)
     public ResponseEntity<ServerResponse> createVehicle(
-            @RequestBody VehicleCreateRequest vehicleCreateRequest) {
-        return vehicleService.createVehicle(vehicleCreateRequest);
+             @Valid @ModelAttribute VehicleCreateRequest vehicleCreateRequest) {
+        return this.vehicleService.createVehicle(vehicleCreateRequest);
     }
 
     @PostMapping(PathConstant.MODIFY_VEHICLE)
     public ResponseEntity<ServerResponse> modifyVehicle(
-            @RequestBody @Valid VehicleModifyRequest vehicleModifyRequest){
+            @Valid @ModelAttribute VehicleModifyRequest vehicleModifyRequest){
         return vehicleService.modifyVehicle(vehicleModifyRequest);
     }
 
