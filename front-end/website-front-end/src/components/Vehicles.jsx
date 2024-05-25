@@ -9,8 +9,8 @@ function Vehicles() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch("http://localhost:8080/gantavyaAdmin/vehicle/fetchAllVehicle")
-    fetch("http://localhost:3000/template")
+    fetch("http://localhost:8080/gantavyaAdmin/vehicle/fetchAllVehicle")
+    // fetch("http://localhost:3000/template")
       .then((response) => response.json())
       .then((data) => {
         const searchedDataList = data.searchedDataList;
@@ -31,7 +31,7 @@ function Vehicles() {
       fueltype: car.fuelType,
       vehicleType: car.vehicleType,
       price: car.dayPrice,
-      image: car.Image,
+      image: car.image,
     };
 
     console.log(carDetails);
@@ -60,7 +60,7 @@ function Vehicles() {
         {selectedCars.map((car, index) => (
           <div className="Select_main" key={index}>
             <div className="image_container">
-              <img src={car.Image} alt={car.name} />
+              <img src={car.image} alt={car.name} />
             </div>
             <div className="Select_Vehicle">
               <h2>{car.modelName}</h2>

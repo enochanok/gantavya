@@ -21,21 +21,20 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/gantavyaAdmin/user/login",
-        {
-          email,
-          password,
-        }
+          "http://localhost:8080/gantavyaAdmin/user/login",
+          {
+            email,
+            password,
+          }
       );
 
       console.log(
-        "Response data in JSON format:",
-        JSON.stringify(response.data)
+          "Response data in JSON format:",
+          JSON.stringify(response.data)
       );
       toast.success("Login successful!");
       localStorage.setItem("admin", true);
 
-      onLogin(); // Call the onLogin function passed as a prop
       navigate("/", { replace: true });
     } catch (error) {
       console.error("Sign In error:", error);
@@ -44,34 +43,34 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-form-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <div className="login-form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div className="login-form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <button type="submit" style={{ width: "100%" }}>
-          Login
-        </button>
-      </form>
-    </div>
+      <div className="login-form-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          <div className="login-form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+            />
+          </div>
+          <div className="login-form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+            />
+          </div>
+          <button type="submit" style={{ width: "100%" }}>
+            Login
+          </button>
+        </form>
+      </div>
   );
 };
 

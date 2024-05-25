@@ -8,6 +8,7 @@ const VehicleDetails = ({ onCancel }) => {
     model_name: "",
     vehicle_type: "",
     number_plate: "",
+    image: "",
     seat: "",
     door: "",
     luggage: "",
