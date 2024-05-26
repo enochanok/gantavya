@@ -6,7 +6,7 @@ import BookingData from "./BookingData";
 import Pagination from "./Pagination";
 import Createbooking from "./Createbooking";
 
-const Api = "http://localhost:3000/bookinginfo";
+const Api = "http://localhost:8080/gantavyaAdmin/booking/fetchAllBooking";
 const PAGE_SIZE = 5;
 
 function Booking() {
@@ -19,7 +19,7 @@ function Booking() {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      setBooking(data.booking);
+      setBooking(data.searchedDataList);
       console.log(data);
     } catch (e) {
       console.error(e);

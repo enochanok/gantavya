@@ -36,9 +36,6 @@ const VehicleDetails = ({ onCancel }) => {
       formData.append("image", image);
     }
 
-    for (let pair of formData.entries()) {
-      console.log(`${pair[0]}: ${pair[1]}`);
-    }
 
     Axios.post(ApiKey, formData, {
       headers: {

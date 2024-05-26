@@ -7,11 +7,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 
 export const SidebarData = [
-  {
-    title: "Home",
-    icon: <HomeIcon />,
-    link: "/",
-  },
+
   {
     title: "User",
     icon: <PersonOutlineIcon />,
