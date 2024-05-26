@@ -19,10 +19,16 @@ public class Booking {
     private Integer id;
 
     @Column(name = "vehicle_id")
-    private Integer vehicleID;
+    private Integer vehicleId;
 
     @Column(name = "user_id")
     private Integer userId;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Users user;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Vehicles vehicle;
 
     @Column(name = "start_date")
     private Date startDate;
