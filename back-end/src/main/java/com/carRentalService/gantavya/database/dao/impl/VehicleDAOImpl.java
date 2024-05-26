@@ -65,11 +65,6 @@ public class VehicleDAOImpl implements VehicleDAO {
             isFirst = false;
         }
 
-        if (allRequestParams.containsKey("provinceId")) {
-            queryString += queryBuilder(isFirst, " pr.id = :province");
-
-        }
-
         return queryString;
     }
 
